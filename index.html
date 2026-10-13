@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AfriDam AI | Tele-Dermal Consultation for Melanin-Rich Skin</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#e6fff9',
+                            100: '#b3ffec',
+                            400: '#00e6b8',
+                            500: '#00C9A7', // Main accent emerald
+                            600: '#00a387',
+                            900: '#052922',
+                        },
+                        dark: {
+                            base: '#080E1E',
+                            card: '#111A2E',
+                            surface: '#1A263D',
+                            border: '#2A3A5C',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scan-line': 'scan 2.5s ease-in-out infinite alternate',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { top: '5%' },
+                            '100%': { top: '90%' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 10px rgba(0, 201, 167, 0.2)' },
+                            '100%': { boxShadow: '0 0 25px rgba(0, 201, 167, 0.6)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #080E1E;
+            color: #F3F4F6;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .glass-panel {
+            background: rgba(17, 26, 46, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-badge {
+            background: rgba(0, 201, 167, 0.12);
+            border: 1px solid rgba(0, 201, 167, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        .video-overlay-gradient {
+            background: linear-gradient(180deg, rgba(8, 14, 30, 0.6) 0%, rgba(8, 14, 30, 0) 30%, rgba(8, 14, 30, 0) 70%, rgba(8, 14, 30, 0.85) 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080E1E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1A263D;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00C9A7;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-black">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-gray-800/80 px-4 py-3 lg:px-8">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid font-bold fa-notes-medical text-dark-base text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-lg tracking-tight text-white flex items-center gap-1.5">
+                        AfriDam <span class="text-brand-500 font-bold">AI</span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Teledermatology</span>
+                </div>
+            </a>
+
+            <!-- Status Indicator & Desktop CTA -->
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full glass-badge text-xs font-medium text-brand-400">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                    <span>Specialists Online Now</span>
+                </div>
+
+                <a href="https://paystack.shop/pay/2kzqv2seg5" target="_blank" rel="noopener noreferrer" 
+                   class="bg-gradient-to-r from-brand-500 to-emerald-400 hover:from-brand-400 hover:to-emerald-300 text-dark-base font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 transition-all duration-300 active:scale-95 flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-xs"></i>
+                    <span>Book Consult</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- HERO & INTERACTIVE SIMULATED CALL SECTION -->
+        <section class="relative pt-6 pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            
+            <!-- Hero Text Banner -->
+            <div class="text-center max-w-2xl mx-auto mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-badge text-xs font-semibold text-brand-400 mb-4 animate-bounce">
+                    <i class="fa-solid fa-shield-halved text-brand-500"></i>
+                    <span>Optimized for Dark Skin & Melanin Profiles</span>
+                </div>
+                
+                <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight mb-3">
+                    Urgent <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-emerald-400 to-teal-300">Teledermal Care</span> From Home
+                </h1>
+                <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                    Connect instantly with certified Black dermatologists. AI-assisted diagnostics engineered specifically for dark skin tones.
+                </p>
+            </div>
+
+            <!-- SIMULATED LIVE VIDEO CONSULTATION CONTAINER -->
+            <div class="max-w-md mx-auto lg:max-w-3xl relative">
+                <!-- Outer Neon Frame -->
+                <div class="relative rounded-3xl p-1 bg-gradient-to-b from-brand-500/40 via-dark-surface to-brand-500/10 shadow-2xl shadow-brand-500/10 overflow-hidden">
+                    
+                    <!-- Main Video Container -->
+                    <div id="videoContainer" class="relative w-full aspect-[9/14] sm:aspect-[16/10] bg-dark-card rounded-[22px] overflow-hidden select-none border border-gray-800">
+                        
+                        <!-- Doctor Video Feed (Main Background View) -->
+                        <div class="absolute inset-0 w-full h-full">
+                            <img id="doctorImg" 
+                                 src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1000&auto=format&fit=crop" 
+                                 alt="Black Female Dermatologist Specialist" 
+                                 class="w-full h-full object-cover object-top transition-transform duration-700">
+                            
+                            <!-- Video Gradient Overlays -->
+                            <div class="absolute inset-0 video-overlay-gradient"></div>
+
+                            <!-- Live Scan Line Animation overlay -->
+                            <div id="scanLine" class="hidden absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-400 to-transparent shadow-[0_0_15px_#00C9A7] animate-scan-line z-10"></div>
+                        </div>
+
+                        <!-- TOP HEADER OVERLAY (In-Call UI) -->
+                        <div class="absolute top-3 left-3 right-3 flex items-center justify-between z-20">
+                            <!-- Doctor Info Badge -->
+                            <div class="flex items-center gap-2.5 bg-dark-base/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-700/60 shadow-lg">
+                                <div class="relative">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 block"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 block absolute top-0 left-0 animate-ping"></span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold text-white leading-none">Dr. A. Adebayo, MD</span>
+                                    <span class="text-[10px] text-brand-400 font-medium">Consultant Dermatologist</span>
+                                </div>
+                            </div>
+
+                            <!-- Live Call Duration & Network Indicator -->
+                            <div class="flex items-center gap-2">
+                                <div class="bg-dark-base/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-gray-700/60 text-[11px] font-mono font-semibold text-gray-300 flex items-center gap-1.5">
+                                    <span id="callTimer" class="text-brand-400">03:42</span>
+                                    <i class="fa-solid fa-wifi text-[9px] text-emerald-400"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI DIAGNOSTIC REAL-TIME HUD -->
+                        <div class="absolute top-16 left-3 z-20 max-w-[210px] sm:max-w-[260px]">
+                            <div id="aiHud" class="bg-dark-base/85 backdrop-blur-md p-2.5 sm:p-3 rounded-2xl border border-brand-500/30 shadow-xl space-y-1.5 transition-all duration-300">
+                                <div class="flex items-center justify-between text-[10px] sm:text-xs font-bold tracking-wider text-brand-400 uppercase">
+                                    <span class="flex items-center gap-1">
+                                        <i class="fa-solid fa-microchip text-brand-500"></i>
+                                        AfriDam AI Scan
+                                    </span>
+                                    <span class="text-emerald-400 text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 border border-emerald-800">ACTIVE</span>
+                                </div>
+
+                                <!-- Real-time diagnostic parameters -->
+                                <div class="space-y-1 text-[11px]">
+                                    <div class="flex justify-between items-center text-gray-300">
+                                        <span>Melanin Profile:</span>
+                                        <span class="font-semibold text-white">Fitzpatrick V-VI</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-gray-300">
+                                        <span>Skin Barrier:</span>
+                                        <span class="font-semibold text-emerald-400">94.2% Optimal</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-gray-300">
+                                        <span>Target Focus:</span>
+                                        <span id="targetFocusText" class="font-semibold text-brand-300 animate-pulse">Hyperpigmentation</span>
+                                    </div>
+                                </div>
+
+                                <!-- Progress bar for live scan simulation -->
+                                <div class="w-full bg-gray-800 rounded-full h-1 overflow-hidden mt-1">
+                                    <div id="aiProgressBar" class="bg-gradient-to-r from-brand-500 to-emerald-400 h-full w-3/4 transition-all duration-500"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PATIENT PIP OVERLAY (Picture in Picture - Mobile Client) -->
+                        <div id="patientPip" class="absolute bottom-20 right-3 z-30 w-28 h-40 sm:w-36 sm:h-48 rounded-2xl overflow-hidden border-2 border-brand-500/80 shadow-2xl bg-dark-surface cursor-pointer group hover:scale-105 transition-all duration-300">
+                            <img id="patientImg" 
+                                 src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=800&auto=format&fit=crop" 
+                                 alt="Black Patient Skin Analysis" 
+                                 class="w-full h-full object-cover">
+                            
+                            <!-- PIP Badge -->
+                            <div class="absolute bottom-1 left-1 right-1 bg-dark-base/80 backdrop-blur-xs px-1.5 py-0.5 rounded text-[9px] font-semibold text-center text-gray-200 truncate">
+                                You (Live Feedback)
+                            </div>
+
+                            <!-- PIP Camera Switch Icon -->
+                            <div class="absolute top-1 right-1 w-6 h-6 rounded-full bg-dark-base/80 flex items-center justify-center text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i class="fa-solid fa-rotate text-[10px]"></i>
+                            </div>
+                        </div>
+
+                        <!-- BOTTOM CALL CONTROLS BAR -->
+                        <div class="absolute bottom-3 left-3 right-3 z-30 bg-dark-base/90 backdrop-blur-md p-2.5 rounded-2xl border border-gray-700/80 flex items-center justify-between">
+                            
+                            <!-- Media Controls -->
+                            <div class="flex items-center gap-2">
+                                <button id="btnMute" title="Toggle Mute" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-dark-surface hover:bg-gray-700 text-gray-200 flex items-center justify-center transition-all active:scale-95 border border-gray-700">
+                                    <i class="fa-solid fa-microphone text-xs sm:text-sm"></i>
+                                </button>
+                                <button id="btnVideo" title="Toggle Camera" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-dark-surface hover:bg-gray-700 text-gray-200 flex items-center justify-center transition-all active:scale-95 border border-gray-700">
+                                    <i class="fa-solid fa-video text-xs sm:text-sm"></i>
+                                </button>
+                                <button id="btnAiScan" title="Run AI Scan Demo" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-500/20 hover:bg-brand-500/30 text-brand-400 border border-brand-500/50 flex items-center justify-center transition-all active:scale-95">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-xs sm:text-sm"></i>
+                                </button>
+                            </div>
+
+                            <!-- Interactive Interactive Demo Call Trigger Button -->
+                            <button id="btnSimulate" class="bg-gradient-to-r from-brand-500 to-emerald-400 hover:from-brand-400 hover:to-emerald-300 text-dark-base font-bold px-3.5 py-2 rounded-xl text-xs sm:text-sm shadow-md flex items-center gap-1.5 transition-all active:scale-95">
+                                <i class="fa-solid fa-circle-play text-xs"></i>
+                                <span id="btnSimulateText">Test AI Diagnosis</span>
+                            </button>
+
+                            <!-- Paystack Call Action -->
+                            <a href="https://paystack.shop/pay/2kzqv2seg5" target="_blank" rel="noopener noreferrer" 
+                               class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-600 hover:bg-red-500 text-white flex items-center justify-center transition-all active:scale-95 shadow-lg shadow-red-600/30" 
+                               title="Book & Start Full Consultation">
+                                <i class="fa-solid fa-phone-slash text-xs sm:text-sm"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Live Notification Toast -->
+                <div id="callNotification" class="mt-3 p-3 rounded-2xl glass-panel border border-brand-500/30 flex items-center justify-between text-xs text-gray-300">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-400 animate-ping"></span>
+                        <span><strong class="text-white">Live Preview Mode:</strong> Tap <i>"Test AI Diagnosis"</i> to simulate skin profile scan.</span>
+                    </div>
+                    <i class="fa-solid fa-circle-info text-brand-400"></i>
+                </div>
+            </div>
+
+            <!-- Urgent Payment Callout Bar -->
+            <div class="mt-8 max-w-2xl mx-auto bg-gradient-to-r from-brand-900/60 via-dark-card to-brand-900/60 border border-brand-500/40 p-5 rounded-3xl shadow-xl text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-left">
+                    <div class="flex items-center gap-2 text-brand-400 text-xs font-bold uppercase tracking-wider mb-1">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Urgent Consult Spot Available
+                    </div>
+                    <div class="text-xl font-extrabold text-white">
+                        ₦15,000 <span class="text-xs font-normal text-gray-400">/ One-time consultation</span>
+                    </div>
+                </div>
+
+                <a href="https://paystack.shop/pay/2kzqv2seg5" target="_blank" rel="noopener noreferrer" 
+                   class="w-full sm:w-auto bg-gradient-to-r from-brand-500 to-emerald-400 hover:from-brand-400 hover:to-emerald-300 text-dark-base font-extrabold px-6 py-3.5 rounded-2xl text-sm shadow-xl shadow-brand-500/20 hover:shadow-brand-500/35 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Pay & Join Tele-Dermal Call</span>
+                </a>
+            </div>
+
+        </section>
+
+        <!-- VALUE PROPOSITION & FEATURES GRID -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-dark-card/50 border-y border-gray-800/60">
+            <div class="max-w-6xl mx-auto">
+                
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
+                        Why Choose AfriDam AI?
+                    </h2>
+                    <p class="text-gray-400 text-xs sm:text-sm">
+                        Built from the ground up to solve dermatological diagnostic disparities for dark skin tones.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    
+                    <!-- Feature 1 -->
+                    <div class="glass-panel p-5 rounded-2xl border border-gray-800 hover:border-brand-500/40 transition-all duration-300 group">
+                        <div class="w-11 h-11 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-lg mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-1.5">Instant 1-on-1 Access</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            No hospital queues. Connect with a specialist directly from your mobile phone or laptop in minutes.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="glass-panel p-5 rounded-2xl border border-gray-800 hover:border-brand-500/40 transition-all duration-300 group">
+                        <div class="w-11 h-11 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-lg mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-dna"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-1.5">Dark Skin Focus</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            AI model trained on 57,000+ annotated dark-skin images for accurate detection of eczema, vitiligo & acne.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="glass-panel p-5 rounded-2xl border border-gray-800 hover:border-brand-500/40 transition-all duration-300 group">
+                        <div class="w-11 h-11 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-lg mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-1.5">Certified Specialists</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Consult directly with licensed Black dermatologists and aesthetic clinicians who understand your skin.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="glass-panel p-5 rounded-2xl border border-gray-800 hover:border-brand-500/40 transition-all duration-300 group">
+                        <div class="w-11 h-11 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-lg mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-prescription-bottle-medical"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-1.5">Digital Care Plan</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Receive personalized skincare product recommendations & clinical prescriptions immediately after your call.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS (3 SIMPLE STEPS) -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
+                    How It Works in 3 Easy Steps
+                </h2>
+                <p class="text-gray-400 text-xs sm:text-sm">
+                    Get professional dermatological attention without leaving your home.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                
+                <!-- Step 1 -->
+                <div class="relative glass-panel p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-600 to-brand-400 text-dark-base font-extrabold text-lg flex items-center justify-center shadow-lg shadow-brand-500/20 mb-4">
+                        1
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Make Payment</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Click the Paystack payment link to clear your one-time consultation fee securely via Card, USSD, or Transfer.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative glass-panel p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-600 to-brand-400 text-dark-base font-extrabold text-lg flex items-center justify-center shadow-lg shadow-brand-500/20 mb-4">
+                        2
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Instant Room Link</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        You will be immediately redirected to your private, encrypted tele-dermal consultation link on your phone.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative glass-panel p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-brand-600 to-brand-400 text-dark-base font-extrabold text-lg flex items-center justify-center shadow-lg shadow-brand-500/20 mb-4">
+                        3
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Consult & Get Routine</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Speak 1-on-1 with our specialist doctor, undergo real-time AI skin profiling, and receive your tailored care plan.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Center Paystack CTA Banner -->
+            <div class="mt-10 text-center">
+                <a href="https://paystack.shop/pay/2kzqv2seg5" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-3 bg-gradient-to-r from-brand-500 via-emerald-400 to-teal-400 hover:from-brand-400 hover:to-teal-300 text-dark-base font-extrabold text-sm sm:text-base px-8 py-4 rounded-2xl shadow-xl shadow-brand-500/25 hover:shadow-brand-500/40 transition-all duration-300 active:scale-95">
+                    <i class="fa-solid fa-lock text-base"></i>
+                    <span>Proceed to Paystack Payment</span>
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STICKY MOBILE FLOATING PAYSTACK BAR -->
+    <div class="sm:hidden fixed bottom-0 left-0 right-0 z-50 glass-panel border-t border-brand-500/30 px-4 py-3 shadow-2xl">
+        <div class="flex items-center justify-between gap-3">
+            <div>
+                <div class="text-[10px] uppercase font-bold text-brand-400 tracking-wider">Tele-Dermal Fee</div>
+                <div class="text-lg font-extrabold text-white">₦15,000</div>
+            </div>
+            
+            <a href="https://paystack.shop/pay/2kzqv2seg5" target="_blank" rel="noopener noreferrer" 
+               class="flex-grow bg-gradient-to-r from-brand-500 to-emerald-400 hover:from-brand-400 hover:to-emerald-300 text-dark-base font-extrabold py-3 px-4 rounded-xl text-xs text-center shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Pay & Start Consult</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800/80 py-8 px-4 text-center text-xs text-gray-500 bg-dark-base mb-16 sm:mb-0">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-gray-300">AfriDam AI</span>
+                <span>© 2026. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-4 text-gray-400">
+                <a href="#" class="hover:text-brand-400 transition-colors">Privacy Policy</a>
+                <span>•</span>
+                <a href="#" class="hover:text-brand-400 transition-colors">Terms of Service</a>
+                <span>•</span>
+                <a href="https://paystack.shop/pay/2kzqv2seg5" target="_blank" class="hover:text-brand-400 transition-colors">Paystack Portal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC FOR SIMULATION & UI CONTROLS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const btnSimulate = document.getElementById('btnSimulate');
+            const btnSimulateText = document.getElementById('btnSimulateText');
+            const scanLine = document.getElementById('scanLine');
+            const aiProgressBar = document.getElementById('aiProgressBar');
+            const targetFocusText = document.getElementById('targetFocusText');
+            const callTimer = document.getElementById('callTimer');
+            const btnMute = document.getElementById('btnMute');
+            const btnVideo = document.getElementById('btnVideo');
+            const btnAiScan = document.getElementById('btnAiScan');
+            const patientPip = document.getElementById('patientPip');
+            const doctorImg = document.getElementById('doctorImg');
+            const patientImg = document.getElementById('patientImg');
+            const aiHud = document.getElementById('aiHud');
+
+            let isMuted = false;
+            let isVideoOff = false;
+            let isScanning = false;
+            let timerSeconds = 222; // starting timer 03:42
+
+            // 1. Timer Functionality
+            setInterval(() => {
+                timerSeconds++;
+                const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+                const secs = (timerSeconds % 60).toString().padStart(2, '0');
+                if (callTimer) callTimer.textContent = `${mins}:${secs}`;
+            }, 1000);
+
+            // 2. Mute Toggle
+            btnMute.addEventListener('click', () => {
+                isMuted = !isMuted;
+                if (isMuted) {
+                    btnMute.classList.remove('bg-dark-surface', 'text-gray-200');
+                    btnMute.classList.add('bg-red-600/30', 'text-red-400', 'border-red-500');
+                    btnMute.innerHTML = '<i class="fa-solid fa-microphone-slash text-xs sm:text-sm"></i>';
+                } else {
+                    btnMute.classList.add('bg-dark-surface', 'text-gray-200');
+                    btnMute.classList.remove('bg-red-600/30', 'text-red-400', 'border-red-500');
+                    btnMute.innerHTML = '<i class="fa-solid fa-microphone text-xs sm:text-sm"></i>';
+                }
+            });
+
+            // 3. Video Toggle
+            btnVideo.addEventListener('click', () => {
+                isVideoOff = !isVideoOff;
+                if (isVideoOff) {
+                    btnVideo.classList.remove('bg-dark-surface', 'text-gray-200');
+                    btnVideo.classList.add('bg-red-600/30', 'text-red-400', 'border-red-500');
+                    btnVideo.innerHTML = '<i class="fa-solid fa-video-slash text-xs sm:text-sm"></i>';
+                    patientImg.style.filter = 'brightness(0.1)';
+                } else {
+                    btnVideo.classList.add('bg-dark-surface', 'text-gray-200');
+                    btnVideo.classList.remove('bg-red-600/30', 'text-red-400', 'border-red-500');
+                    btnVideo.innerHTML = '<i class="fa-solid fa-video text-xs sm:text-sm"></i>';
+                    patientImg.style.filter = 'none';
+                }
+            });
+
+            // 4. PIP View Swap (Switch Doctor and Patient Main View)
+            let isSwapped = false;
+            patientPip.addEventListener('click', () => {
+                isSwapped = !isSwapped;
+                const tempSrc = doctorImg.src;
+                doctorImg.src = patientImg.src;
+                patientImg.src = tempSrc;
+            });
+
+            // 5. AI Diagnosis Simulation Trigger
+            function runDiagnosticSimulation() {
+                if (isScanning) return;
+                isScanning = true;
+
+                // UI updates for scanning state
+                scanLine.classList.remove('hidden');
+                btnSimulateText.textContent = 'Scanning Skin...';
+                aiHud.classList.add('border-brand-400', 'shadow-brand-500/20');
+
+                const conditions = ['Hyperpigmentation', 'Active Melanin Scan', 'Skin Barrier Analysis', 'Vitiligo Border Check', 'Eczema Profile Match'];
+                let step = 0;
+
+                const interval = setInterval(() => {
+                    step++;
+                    if (step < conditions.length) {
+                        targetFocusText.textContent = conditions[step];
+                        aiProgressBar.style.width = `${(step + 1) * 20}%`;
+                    } else {
+                        clearInterval(interval);
+                        // Finish scanning
+                        scanLine.classList.add('hidden');
+                        targetFocusText.textContent = 'Diagnosis Complete!';
+                        targetFocusText.classList.remove('animate-pulse');
+                        targetFocusText.classList.add('text-emerald-400');
+                        btnSimulateText.textContent = 'Scan Again';
+                        isScanning = false;
+
+                        setTimeout(() => {
+                            targetFocusText.classList.add('animate-pulse');
+                            targetFocusText.classList.remove('text-emerald-400');
+                            targetFocusText.textContent = 'Hyperpigmentation';
+                            aiProgressBar.style.width = '75%';
+                        }, 4000);
+                    }
+                }, 800);
+            }
+
+            btnSimulate.addEventListener('click', runDiagnosticSimulation);
+            btnAiScan.addEventListener('click', runDiagnosticSimulation);
+        });
+    </script>
+</body>
+</html>
